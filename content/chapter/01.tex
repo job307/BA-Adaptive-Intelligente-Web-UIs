@@ -59,6 +59,14 @@ The line between facilitating and irritating pop-up windows is very thin and has
 implementing adaptation in runtime scenarios.
 
 \subsection{Implementation Complexity}
+Beim Erreichen von UI Adaptivität ist der dynamische, synchrone Wechsel der Benutzeroberfläche der komplizierteste Teil zu implementieren. 
+In der Praxis muss das User Interface:
+\begin{itemize}
+    \item Die Daten und den Kontext zu jeder Zeit verstehen
+    \item Sie mithilfe eines implementierten Entscheidungslogik prüfen
+    \item Das UI und die adaptiven Komponenten auf einer effektiven, sanften und nicht blockierenden Art und Weise ändern
+\end{itemize}
+
 In the process of achieving UI adaptation, the part of real-time, dynamic changing of the UI (adaptivity) is arguably the
 most complex part implementation-wise. In practice, the UI mechanism has to:
 \begin{itemize}
@@ -68,13 +76,30 @@ most complex part implementation-wise. In practice, the UI mechanism has to:
 \end{itemize}
 
 \subsection{Interface plasticity} %responsive web site = instance of a plastic user interface
+Die dritte Herausforderung ist das Ergebnis der Adaptivität im User Interface. Diese Ergebnisse und deren Effekt auf den Nutzer 
+können anhand ihrer "plasticity" gemessen werden.
+
+\textbf{Plasticity}, zu deutsch (Ver-)Formbarkeit, wird benutzt, um die Leistungsfähigkeit des User Interfaces, 
+Kontextwechsel der Nutzer standzuhalten und Änderungen der betroffenen Regionen zu adaptieren, 
+um Benutzerfreundlichkeit zu gewährleisten.
+"Therefore, in the context of a plastic UI, the goal is to maintain these properties within their values while achieving adaptation"
+Zusammengefasst soll die Benutzeroberfläche:
+\begin{itemize}
+    \item effektiv,
+    \item benutzbar,
+    \item selbst-lernend,
+    \item flüssig und
+    \item benutzerfreundlich
+\end{itemize}
+sein, während sie sich dem Kontext anpasst. Das Komplexe am implementieren eines adaptiven UI ist der Sprung vom Abstrakten 
+zu etwas Konkretem.
 The third and equally important challenge that we come across is the actual result that the adaptation will bring to the User Interface.
 These results, and the effect that they have, can be measured by the notion of plasticity.
 
 \textbf{Plasticity} is a term that is interpreted in the bibliography in many (slightly) different variations,
 although the root remains stable: it is the term used to describe the capacity of a user interface to withstand variations %Die Leistungsfähigkeit des User Interfaces, Kontextwechsel der Nutzer standzuhalten und Änderungen der betroffenen Regionen zu adaptieren, um Benutzerfreundlichkeit zu gewährleisten
-of the context of use and adapt to changes of the interactive space in order to preserve usability [G. Calvary, J. Coutaz, D. Thevenin, Q. Limbourg, N. Souchon, L. Bouillon, et al., "Plasticity of user interfaces: A revisited reference framework," in In Task Models and Diagrams for User Interface Design, 2002.].
-Therefore, in the context of a plastic UI, the goal is to maintain these properties within their values while achieving adaptation [L. Balme, A. Demeure, N. Barralon, J. Coutaz, and G. Calvary, "Cameleon-rt: A software architecture reference model for distributed, migratable, and plastic user interfaces," in Ambient intelligence, ed: Springer, 2004, pp. 291-302.].
+of the context of use and adapt to changes of the interactive space in order to preserve usability [G. Calvary, J. Coutaz, D. Thevenin, Q. Limbourg, N. Souchon, L. Bouillon, et al., "Plasticity of user interfaces: A revisited reference framework" in In Task Models and Diagrams for User Interface Design, 2002.].
+Therefore, in the context of a plastic UI, the goal is to maintain these properties within their values while achieving adaptation [L. Balme, A. Demeure, N. Barralon, J. Coutaz, and G. Calvary, "Cameleon-rt: A software architecture reference model for distributed, migratable, and plastic user interfaces" in Ambient intelligence, ed: Springer, 2004, pp. 291-302.].
 
 In simple words, and as perceived under our research domain context, we want the user interface to be
 1) effective,
