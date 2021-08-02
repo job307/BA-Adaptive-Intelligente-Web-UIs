@@ -62,18 +62,31 @@ angenehmen und irritierenden Pop-Up Fenster ist sehr schmal und muss genauso bei
 an der UI berücksichtigt werden.
 
 \subsection{Komplexe Implementierung}
-Beim Erreichen von UI Adaptivität ist der dynamische, synchrone Wechsel der Benutzeroberfläche der komplizierteste Teil zu implementieren.
-In der Praxis muss das User Interface:
-\begin{itemize}
-    \item Die Daten und den Kontext zu jeder Zeit verstehen
-    \item Sie mithilfe eines implementierten Entscheidungslogik prüfen
-    \item Das UI und die adaptiven Komponenten auf einer effektiven, sanften und nicht blockierenden Art und Weise ändern
-\end{itemize}
-
+Aktionen von Nutzern werden in Episoden aufgefasst. Mittels Identifizierung und Verknüpfungen der einzelnen 
+Episoden wird es dem Interface möglich auch mehr als nur eine Aktion des Nutzers vorherzusagen. 
+Dafür müssen fünf wichtige Probleme, der Reihe nach, behoben werden: 
+\begin{enumerate}
+    \item Zuerst geht es um die \textbf{Überwachung der Interaktionen zwischen Nutzer und der Applikation}. Das User Interface 
+    muss zu jeder Zeit die Daten und den Kontext verstehen, da andernfalls wichtige Informationen verloren gehen können, wenn 
+    es eine Limitierung der Typen von Events, die verarbeitet werden können, gibt. Um daher so viele nützliche Informationen wie möglich 
+    über das Vorhaben / Bedürfnis des Nutzers zu gewinnen, müssen mehrere 'low-level' Events des Interfaces zugänglich gemacht werden.
+    \item Um \textbf{unterschiedliche Episoden von den überwachten Aktionen der Nutzer-Computer Interaktion zu extrahieren,} 
+    müssen alle eingehenden Events einer Klasse zugewisen werden -- z.B. Tastatureingaben, Menu-Auswahl und Button gedrückt. Jede Aktion 
+    stellt eine grundsätzliche Episode dar. Diese erkennbaren Hinweise helfen die Nutzerabsichten festzustellen.
+    \item Das \textbf{Erkennen von Verhaltensmuster des Nutzers}. Um verstekte Muster aufzudecken werden Algorithmen oder eine Sprache 
+    benötigt, die die Events in zugehörige Muster einordnen. Darüber hinaus sollte ein adaptives User Interface in der Lage sein, 
+    neue Events von zuvor modelierten Events zu unterscheiden und daraufhin neue Transformationsfunktionen bilden, oder bestehende anpasssen.
+    \item \textbf{Entsprechend dem erkannten Plan eines Nutzers, adaptiv Hilfe vorschlagen.} Wenn das Interface merkt, dass ein Nutzer 
+    gerade dabei ist einen speziellen Plan auszuführen, sollte es Unterstützung bieten. Im besten Fall kann der Nutzer das Interface 
+    nach seinen Präferenzen konfigurieren, wo und wie die vorgeschlagene Hilfe anzuzeigen ist.
+    \item \textbf{Um personalisierte Interaktionen zu gewähren müssen Nutzerprofile angelegt werden.} Profile speichern sowohl Informationen 
+    zu Vorlieben des Nutzers, als auch die vom System entdeckten Verhaltensmuster. Das System updatet ein Profil wann immer es 
+    eine Änderung in der Verhaltensweise des Nutzers feststellt.
+\end{enumerate}
 
 \subsection{Robuste User Interfaces} %responsive web site = instance of a plastic user interface
 Die dritte Herausforderung ist das Ergebnis der Adaptivität im User Interface. Diese Ergebnisse und deren Effekt auf den Nutzer
-können anhand ihrer "plasticity" gemessen werden.
+können anhand ihrer 'plasticity' gemessen werden.
 
 \textbf{Plasticity}, zu deutsch (Ver-)Formbarkeit, wird benutzt, um die Leistungsfähigkeit des User Interfaces,
 Kontextwechsel der Nutzer standzuhalten und Änderungen der betroffenen Regionen zu adaptieren,
