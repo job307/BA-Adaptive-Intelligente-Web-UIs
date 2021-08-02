@@ -25,41 +25,44 @@ predicting a user’s most likely plan and then performing part of the plan on t
 thus reducing the intervention required.
 
 \section{Problemstellung}
-1. User experience intervention aspects % Eingriffe in die Benutzererfahrung
-2. Implementation Complexity % Komplexe Implementation
-3. Interface plasticity % Robuste Interfaces
+Bei dem Erstellen von Benutzeroberflächen gibt es drei Herausforderungen zu beachten:
+\begin{itemize}
+    \item unerwünschte Eingriffe in die Benutzererfahrung
+    \item Komplexität der Implementierung
+    \item robuste User Interfaces
+\end{itemize}
 
 \begin{figure}[h]
     \centering
     \includegraphics[height=.65\textwidth]{implChallenges.png}
-    \caption{The three implementation challenges with the overlaps}
+    \caption{Die drei Herausforderungen und ihre Schnittstellen}
 \end{figure}
 
-\subsection{User experience intervention}
-a UI with multiple adaptive components can cause unwanted interruptions to the user, and, in addition,
-automatic and frequent adaptivity of interface may end up causing a feeling of loss of control [S. Kumar and A. Sekmen, "Single robot–Multiple human interaction via intelligent user interfaces," Knowledge-Based Systems, vol. 21, pp. 458-465, 2008.]
+\subsection{Schlechte Benutzererfahrung}
+Ein UI mit mehreren adaptiven Komponenten kann den Nutzer verwirren und zusätzlich können automatische
+und häufige Änderungen an diesen Komponenten dem Nutzer das Gefühl geben, er habe die Kontrolle verloren.
 
-\textbf{Multiple adaptive components:} when the majority of the components that assemble the UI are
-changing (irrelevant of the sophistication and excellence of the underlying intelligence in the adaptation decisions),
-they can mess up with the user’s familiarity with the interface and take him out of his comfort zone.
+Das Problem mit \textbf{mehreren adaptiven Komponenten} ist, dass wenn sich die Komponenten
+(und somit auch UI) ändern, der Nutzer sich nicht mehr zurecht findet und aus seiner comfort
+zone gebracht wird. Dabei ist es nicht entscheidend, wie gut die zugrunde liegende Intelligenz ist,
+die die Entscheidungen über die Änderung der adaptiven Komponenten trifft.
 
-Putting it into perspective, this indeed can spiral out of control and cause confusion,
-stress and even frustration. It is really nice and elegant to have dropdown lists that add filter options when data input is large,
-tables that sort themselves out based on input type, or pop-up windows that advise on next step and/or preselect actions for you; however,
-if they all exist together and there are minimum standard UI components that can act as “reference points” for the user,
-this can easily escalate into a bad experience for him and bring the adaptation effort to a failure.
+Aus Sicht des Benutzers kann das Gefühl von Kontrollverlust zu Verwirrung, Stress und sogar Frustration führen. So toll
+\begin{itemize}
+    \item eine dropdown Liste, die seine Optionen selbst filtert, wenn zu viele Daten vorhanden sind,
+    \item eine Tabelle die sich je nach Input-Typ sortiert oder
+    \item Pop-Ups, die die nächsten Aktionen eines Nutzers vorhersagen und / oder eine Vorauswahl an Aktionen für einen machen,
+\end{itemize}
+sind, wenn sie alle gleichzeitig in einer Webanwendung existieren führt das zu einer schlechten Benutzererfahrung.
 
-\textbf{Simultaneous adaptation of components:} implementing behavior that changes the UI in an ad-hoc and disorderly mode can result
-in a complete change of UI that will - at least! - confuse the user.
+Den Nutzer um eine \textbf{Bestätigung} bitten, wenn ein Passwort eingegeben wird oder wenn gesicherte Daten
+überschrieben werden oder beim Absenden einer Email oder Form ist sehr wichtig.
+Diese Pop-Ups sollten sehr vorsichtig und nutzerzentriert gewählt werden. Der Grad zwischen einem
+angenehmen und irritierenden Pop-Up Fenster ist sehr schmal und muss genauso bei adaptiven Änderungen
+an der UI berücksichtigt werden.
 
-\textbf{User prompting:} Prompting the user for confirmation when filing in a password is a smart choice; also when he is about to overwrite a saved item,
-or replace a UI component with a new one of his choice, or submitting a form etc. It is really important to point out that
-this selection of UI components that will trigger prompting/confirmation has to be done in a very careful and user-centered way.
-The line between facilitating and irritating pop-up windows is very thin and has to be taken under consideration while
-implementing adaptation in runtime scenarios.
-
-\subsection{Implementation Complexity}
-Beim Erreichen von UI Adaptivität ist der dynamische, synchrone Wechsel der Benutzeroberfläche der komplizierteste Teil zu implementieren. 
+\subsection{Komplexe Implementierung}
+Beim Erreichen von UI Adaptivität ist der dynamische, synchrone Wechsel der Benutzeroberfläche der komplizierteste Teil zu implementieren.
 In der Praxis muss das User Interface:
 \begin{itemize}
     \item Die Daten und den Kontext zu jeder Zeit verstehen
@@ -67,20 +70,13 @@ In der Praxis muss das User Interface:
     \item Das UI und die adaptiven Komponenten auf einer effektiven, sanften und nicht blockierenden Art und Weise ändern
 \end{itemize}
 
-In the process of achieving UI adaptation, the part of real-time, dynamic changing of the UI (adaptivity) is arguably the
-most complex part implementation-wise. In practice, the UI mechanism has to:
-\begin{itemize}
-    \item Understand the data and the context at any given time
-    \item Evaluate them against the implemented logic of decision making
-    \item Adapt the UI and its components in an effective, smooth and non task-blocking way
-\end{itemize}
 
-\subsection{Interface plasticity} %responsive web site = instance of a plastic user interface
-Die dritte Herausforderung ist das Ergebnis der Adaptivität im User Interface. Diese Ergebnisse und deren Effekt auf den Nutzer 
+\subsection{Robuste User Interfaces} %responsive web site = instance of a plastic user interface
+Die dritte Herausforderung ist das Ergebnis der Adaptivität im User Interface. Diese Ergebnisse und deren Effekt auf den Nutzer
 können anhand ihrer "plasticity" gemessen werden.
 
-\textbf{Plasticity}, zu deutsch (Ver-)Formbarkeit, wird benutzt, um die Leistungsfähigkeit des User Interfaces, 
-Kontextwechsel der Nutzer standzuhalten und Änderungen der betroffenen Regionen zu adaptieren, 
+\textbf{Plasticity}, zu deutsch (Ver-)Formbarkeit, wird benutzt, um die Leistungsfähigkeit des User Interfaces,
+Kontextwechsel der Nutzer standzuhalten und Änderungen der betroffenen Regionen zu adaptieren,
 um Benutzerfreundlichkeit zu gewährleisten.
 "Therefore, in the context of a plastic UI, the goal is to maintain these properties within their values while achieving adaptation"
 Zusammengefasst soll die Benutzeroberfläche:
@@ -91,62 +87,41 @@ Zusammengefasst soll die Benutzeroberfläche:
     \item flüssig und
     \item benutzerfreundlich
 \end{itemize}
-sein, während sie sich dem Kontext anpasst. Das Komplexe am implementieren eines adaptiven UI ist aus dem Abstrakten 
+sein, während sie sich dem Kontext anpasst. Das Komplexe am implementieren eines adaptiven UI ist aus dem Abstrakten
 etwas Konkretes zu schaffen.
-The third and equally important challenge that we come across is the actual result that the adaptation will bring to the User Interface.
-These results, and the effect that they have, can be measured by the notion of plasticity.
-
-\textbf{Plasticity} is a term that is interpreted in the bibliography in many (slightly) different variations,
-although the root remains stable: it is the term used to describe the capacity of a user interface to withstand variations %Die Leistungsfähigkeit des User Interfaces, Kontextwechsel der Nutzer standzuhalten und Änderungen der betroffenen Regionen zu adaptieren, um Benutzerfreundlichkeit zu gewährleisten
-of the context of use and adapt to changes of the interactive space in order to preserve usability [G. Calvary, J. Coutaz, D. Thevenin, Q. Limbourg, N. Souchon, L. Bouillon, et al., "Plasticity of user interfaces: A revisited reference framework" in In Task Models and Diagrams for User Interface Design, 2002.].
-Therefore, in the context of a plastic UI, the goal is to maintain these properties within their values while achieving adaptation [L. Balme, A. Demeure, N. Barralon, J. Coutaz, and G. Calvary, "Cameleon-rt: A software architecture reference model for distributed, migratable, and plastic user interfaces" in Ambient intelligence, ed: Springer, 2004, pp. 291-302.].
-
-In simple words, and as perceived under our research domain context, we want the user interface to be
-1) effective,
-2) usable,
-3) self-learning,
-4) fluid,
-5) user-facilitating,
-while adapting and changing based on the context. It should ideally resemble to the properties of plastic or brain:
-learn, change and adapt to context changes with the purpose of improvement.
-In terms of complexity, it is obviously a non-trivial task; aligning with generic notions of effectiveness and usability
-while implementing and generating lines of coding is always a difficult task; this jump from abstract to concrete is
-the main challenge of this type of problems.
-
 
 \section{Motivation}
-Meine Leidenschaft für digitale Produkte und Dienstleistungen entwickelte sich mit meinem ersten iPhone. 
-Die Anwendungsgebiete dieser Smartphones im Alltag sind endlos. Durch die ständige Weiterentwicklung 
-und zunehmend tiefere Integration in unser Leben, entstehen täglich neue Möglichkeiten die Designer vor 
-neue Herausforderungen stellen. Eine dieser Möglichkeiten wird sein, immer mehr User Interfaces adaptiv zu gestalten, 
-um sich jedem Nutzer speziell anzupassen und mehr über seinen Benutzungskontext zu erfahren. Geräte, die 
-heute erworben werden sind in zwei Jahren nicht mehr das selbe, als sie zum Zeitpunkt des Einkaufes waren. 
-Wir kaufen unfertige Black-Boxen, 
+Meine Leidenschaft für digitale Produkte und Dienstleistungen entwickelte sich mit meinem ersten iPhone.
+Die Anwendungsgebiete dieser Smartphones im Alltag sind endlos. Durch die ständige Weiterentwicklung
+und zunehmend tiefere Integration in unser Leben, entstehen täglich neue Möglichkeiten die Designer vor
+neue Herausforderungen stellen. Eine dieser Möglichkeiten wird sein, immer mehr User Interfaces adaptiv zu gestalten,
+um sich jedem Nutzer speziell anzupassen und mehr über seinen Benutzungskontext zu erfahren. Geräte, die
+heute erworben werden sind in zwei Jahren nicht mehr das selbe, als sie zum Zeitpunkt des Einkaufes waren.
+Wir kaufen unfertige Black-Boxen,
 die durch Software-Updates und Anpassungen an und vom Nutzer ständig neue Funktionen bekommen. %[Vgl. K. Christoph(2014): Die Granulare Gesellschaft, Berlin, Ullstein Buchverlage GmbH, Seite 97] 
-In Zukunft wird diese Entwicklung beschleunigt und es Bedarf keinen Updates mehr um die Software abzuändern. 
-Software wird sich selbst in einem ihr gegebenen Rahmen dem Nutzer anpassen. 
+In Zukunft wird diese Entwicklung beschleunigt und es Bedarf keinen Updates mehr um die Software abzuändern.
+Software wird sich selbst in einem ihr gegebenen Rahmen dem Nutzer anpassen.
 
-Folglich ergibt sich meine Motivation aus eben genannter Entwicklung und meinem persönlichen Interesse an der Gestaltung von User 
+Folglich ergibt sich meine Motivation aus eben genannter Entwicklung und meinem persönlichen Interesse an der Gestaltung von User
 Interfaces und möchte mit dieser Arbeit einen Teil zur zukünftigen Gestaltung von adaptiven UIs beitragen.
 
 \section{Zielsetzung}
 \label{Zielsetzung}
-Es soll ein Prtototyp erstellt werden, der ähnlich wie Booking.com oder Airbnb Unterkünfte vorschlägt. 
-Im Gegensatz zu den bekannten Websites soll der Prototyp, zusätzlich zu den allgemeinen Auswahlmöglichkeiten (Wo, Von wann bis wann, Wie viele Personen), 
-noch dem Nutzer unterbewusste Kriterien an den Unterkünften entnehmen und bei einer gewissen Konfidenz sogar nach diesen 
-Kriterien die Unterkünfte sortieren. Zu Beginn wird geschaut, ob der Nutzer Unterkünfte mit Pools präferiert. Zu einem späteren 
+Es soll ein Prtototyp erstellt werden, der ähnlich wie Booking.com oder Airbnb Unterkünfte vorschlägt.
+Im Gegensatz zu den bekannten Websites soll der Prototyp, zusätzlich zu den allgemeinen Auswahlmöglichkeiten (Wo, Von wann bis wann, Wie viele Personen),
+noch dem Nutzer unterbewusste Kriterien an den Unterkünften entnehmen und bei einer gewissen Konfidenz sogar nach diesen
+Kriterien die Unterkünfte sortieren. Zu Beginn wird geschaut, ob der Nutzer Unterkünfte mit Pools präferiert. Zu einem späteren
 Zeitpunkt kann die Applikation um weitere Merkmale wie eine Klimaanlage oder die Nähe zu einem bestimmten Unternehmensstandort erweitert werden.
 
-Nach der Erstellung des Prototypes soll anhand einer Nutzerstudie evaluiert werden, ob die Sinnhaftigkeit eines personalisierten 
-Buchungsportal für Unterkünfte auch beim Nutzer ankommt. 
+Nach der Erstellung des Prototypes soll anhand einer Nutzerstudie evaluiert werden, ob die Sinnhaftigkeit eines personalisierten
+Buchungsportal für Unterkünfte auch beim Nutzer ankommt.
 
 \section{Themenabgrenzung}
-Was wird aus inhaltlichen Gründen im Einzelnen untersucht oder aus umfangmäßigen Gründen nicht näher betrachtet. 
-Ausführungen zur Untersuchungsmethodik.
-
-Bei der Implementierung des Prototypes wird sich zu Beginn nur auf ein Merkmal der Unterkünfte konzentriert, um erstmal einen 
-vollständig funktionsfähigen Prototyp zu haben. Dieser kann bei genügen Zeit noch erweitert werden, wie in Section \nameref{Zielsetzung} 
-bereits erwähnt. Dennoch werden Ausblicke gegeben, wie mit mehreren Merkmalen umgegangen werden sollte. Zudem werden den allgemeinen Auswahlmöglichkeiten des Nutzers keine Beachtung geschenkt, da hier die tatsächliche Suche nach Unterkünften 
+%Was wird aus inhaltlichen Gründen im Einzelnen untersucht oder aus umfangmäßigen Gründen nicht näher betrachtet. 
+%Ausführungen zur Untersuchungsmethodik.
+Bei der Implementierung des Prototypes wird sich zu Beginn nur auf ein Merkmal der Unterkünfte konzentriert, um erstmal einen
+vollständig funktionsfähigen Prototyp zu haben. Dieser kann bei genügen Zeit noch erweitert werden, wie in Section \nameref{Zielsetzung}
+bereits erwähnt. Dennoch werden Ausblicke gegeben, wie mit mehreren Merkmalen umgegangen werden sollte. Zudem werden den allgemeinen Auswahlmöglichkeiten des Nutzers keine Beachtung geschenkt, da hier die tatsächliche Suche nach Unterkünften
 zum einen nicht neu Erfunden werden muss, zum anderen keine essentielle Rolle bei dem Prototyp spielt.
 
 \section{Firma}
